@@ -1,16 +1,23 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
+
 
 public class StarLauncher : MonoBehaviour {
 
 	public GameObject user;
 	public StarController Star;
-	public AudioSource whooshSound;
+	public AudioSource hooshSound;
 	public int stars;
+	public Text starnos;
+	public Canvas gameOverCanvas;
+
 	private GameController _gameController;
 	private Vector3 _shooterOffset;
 	private float _nextLaunchTime;
 	void Start () {
+		
+		gameOverCanvas.enabled = false;
 		_gameController = this.GetComponent<GameController>();
 		_shooterOffset = new Vector3(0.0f, 0.8f, 1.0f);
 
@@ -22,8 +29,9 @@ public class StarLauncher : MonoBehaviour {
 
 	
 
-		if (Input.GetButtonDown ("Fire1") && !_gameController.isGameOver) {
-						Vector3 mouseLoc = Input.mousePosition;
+		if (Input.GetButtonDown ("Fire") && !_gameController.isGameOver) {
+			
+			Vector3 mouseLoc = Input.mousePosition;
 			Vector3 worldMouseLoc = Camera.main.ScreenToWorldPoint (mouseLoc);
 			worldMouseLoc.y = user.transform.position.y;
 			user.transform.LookAt (worldMouseLoc);
@@ -33,6 +41,8 @@ public class StarLauncher : MonoBehaviour {
 			{
 				LaunchStarFrom (user, _shooterOffset);
 				stars -= 1;
+
+				starnos.text =  "" +stars;
 					}	
 
 		}
@@ -48,8 +58,8 @@ public class StarLauncher : MonoBehaviour {
 		Vector3 transformedOffset = origin.transform.rotation * shooterOffset;
 		Instantiate(Star, origin.transform.position + transformedOffset, Quaternion.Euler(StarRotation));
 		
-	
-		whooshSound.Play();
+		
+		hooshSound.Play();
 		
 	}
 	

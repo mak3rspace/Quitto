@@ -8,7 +8,7 @@ public class YouLoseIfEnemyHitsThis : MonoBehaviour {
 	
 	void OnTriggerEnter (Collider other) 
 	{
-				if (other.tag == "Enemy") {
+		if (other.tag == "Enemy") {
 			EnemyMover badGuy = other.gameObject.GetComponent<EnemyMover>();
 			if (!badGuy.IsDying()) {
 				gameController.GameOver(false);

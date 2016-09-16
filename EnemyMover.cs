@@ -11,12 +11,13 @@ public class EnemyMover : MonoBehaviour {
 	
 	private EnemyState _state;
 
-	// Use this for initialization.
+
 	void Start () {
 		_state = EnemyState.Normal;
 		float thisSpeed = Random.Range(speedMin, speedMax);
 		this.GetComponent<Rigidbody>().velocity = transform.forward * thisSpeed;
 	}
+	
 	
 	
 	public bool IsDying() {

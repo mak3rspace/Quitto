@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-
 public class EnemySpawner : MonoBehaviour {
 	
 	public float maxZSpawn;
@@ -10,6 +9,7 @@ public class EnemySpawner : MonoBehaviour {
 	public float launchRangeMinTime;
 	public float launchRangeMaxTime;
 	public GameObject enemyPrefab;
+
 	
 	private float _nextLaunchTime;
 	private float _ySpawn = 0.4f;
@@ -32,6 +32,7 @@ public class EnemySpawner : MonoBehaviour {
 			Vector3 launchPosition = new Vector3(xSpawn, _ySpawn, Random.Range(minZSpawn, maxZSpawn));
 			Instantiate(enemyPrefab, launchPosition, _launchRotation);
 			SetNextLaunch();
+
 		}
 	}
 }
